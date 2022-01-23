@@ -22,7 +22,7 @@
 <app-select-dropdown
     [dropDownData]="trims$ | async"
     [label]="'Style'"
-    (selectedItemEvent)="getData($event)">
+    (selectedItemEvent)="getTyres($event)">
 </app-select-dropdown>
 <div *ngIf="selectedYear">
     Vehicle: {{selectedYear}} {{selectedMake}} {{selectedModel}} {{selectedTrim}}
