@@ -1,27 +1,27 @@
 
 <div class="button-section">
-    <button (click)="getYears()" style="float: left;"> Select vehicle </button>
-    <button (click)="resetAll()" style="float: right;"> Reset </button>
+    <button (click)="getYears()"> Select Vehicle </button>
+    <button (click)="resetAll()"> Reset </button>
 </div>
 <app-select-dropdown
     [dropDownData]="years$ | async"
-    [actionType]="'Year'"
+    [label]="'Year'"
     (selectedItemEvent)="getMakes($event)">
 </app-select-dropdown>
 <app-select-dropdown
     [dropDownData]="makes$ | async"
-    [actionType]="'Make'"
+    [label]="'Make'"
     (selectedItemEvent)="getModels($event)">
 </app-select-dropdown>
 <app-select-dropdown
     [dropDownData]="models$ | async"
-    [actionType]="'Model'"
+    [label]="'Model'"
     (selectedItemEvent)="getTrims($event)">
 </app-select-dropdown>
 
 <app-select-dropdown
     [dropDownData]="trims$ | async"
-    [actionType]="'Style'"
+    [label]="'Style'"
     (selectedItemEvent)="getData($event)">
 </app-select-dropdown>
 <div *ngIf="selectedYear">

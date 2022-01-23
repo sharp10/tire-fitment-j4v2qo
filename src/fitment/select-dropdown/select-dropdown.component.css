@@ -8,6 +8,7 @@
 
 select {
     height: 32px;
+    margin-left: 5px;
 }
 
 option {

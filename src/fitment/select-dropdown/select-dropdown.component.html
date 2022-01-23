@@ -1,8 +1,8 @@
 <div *ngIf="dropDownData && dropDownData.length !== 0">
     <form [formGroup]="selectForm">
-        <label [attr.for]="actionType" class="select-label">{{actionType}}:</label>
-        <select (change)="getSelectedOption()" formControlName="data" [attr.name]=actionType [attr.data-cy]=actionType>
-            <option value="">Please select {{actionType}} </option>
+        <label [attr.for]="label" class="select-label">{{label}}:</label>
+        <select (change)="getSelectedOption()" formControlName="data" [attr.name]=label [attr.data-cy]=label>
+            <option value="">Please select {{label | lowercase}} </option>
             <option *ngFor="let item of dropDownData" [value]="item">{{item}}</option>
         </select>
     </form>

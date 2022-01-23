@@ -11,7 +11,7 @@ export class SelectDropdownComponent implements OnInit, OnChanges {
   constructor() { }
 
   @Input() dropDownData!: any;
-  @Input() actionType!: string;
+  @Input() label!: string;
   @Output() selectedItemEvent = new EventEmitter<any>();
 
   selectForm = new FormGroup({
