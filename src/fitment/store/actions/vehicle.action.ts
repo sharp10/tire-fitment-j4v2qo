@@ -18,3 +18,8 @@ export const loadModelsError = createAction('[Fitment] Load Models Fail', props<
 export const loadTrims = createAction('[Fitment] Load Trims', props<{ year: string, make: string, model: string; }>());
 export const loadTrimsSuccess = createAction('[Fitment] Load Trims Success', props<{ trims: any }>());
 export const loadTrimsError = createAction('[Fitment] Load Trims Fail', props<{ errorMsg: string; }>());
+
+export const resetAll = createAction('[Fitment] Reset All');
+export const clearMake = createAction('[Fitment] Clear Make');
+export const clearModel = createAction('[Fitment] Clear Model');
+export const clearTrim = createAction('[Fitment] Clear Trim');

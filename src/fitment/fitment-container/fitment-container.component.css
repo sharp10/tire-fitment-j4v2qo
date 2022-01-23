@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    padding: 0 16px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+div.button-section>button{
+    padding: 5px 5px;
+    margin: 5px;
+}

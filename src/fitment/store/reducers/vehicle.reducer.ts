@@ -107,7 +107,6 @@ export const vehicleReducer = createReducer(
     };
   }),
   on(VehicleAction.loadTrimsSuccess, (state, { trims }) => {
-    console.log("loadTrimsSuccess-->", trims);
     return {
       ...state,
       error: '',
@@ -123,7 +122,36 @@ export const vehicleReducer = createReducer(
       error: errorMsg
     };
   }),
+  on(VehicleAction.resetAll, () => {
+    return {
+      ...initialState
+    };
+  }),
+  on(VehicleAction.clearMake, (state) => {
+    return {
+      ...state,
+      makes: initialState.makes,
+      make: initialState.make,
+    };
+  }),
+  on(VehicleAction.clearModel, (state) => {
+    return {
+      ...state,
+      models: initialState.models,
+      model: initialState.model,
+
+    };
+  }),
+  on(VehicleAction.clearTrim, (state) => {
+    return {
+      ...state,
+      trims: initialState.trims,
+      trim: initialState.trim,
+    };
+  }),
 );
+
+export const resetAll = (state: State) => state;
 export const getError = (state: State) => state.error;
 export const loadYears = (state: State) => state.years;
 export const loadMakes = (state: State) => state.makes;

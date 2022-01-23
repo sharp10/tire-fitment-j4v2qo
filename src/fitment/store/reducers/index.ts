@@ -4,8 +4,6 @@
 
     The role of reducers is to deal with pure state and immutable objects
 */
-
-import { state } from '@angular/animations';
 import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
 import * as fromVehicle from './vehicle.reducer';
 // Composing the parent state (FitmentState) that will encompass smaller chunks of state (vehicleState)

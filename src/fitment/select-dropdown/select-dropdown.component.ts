@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   templateUrl: './select-dropdown.component.html',
   styleUrls: ['./select-dropdown.component.css']
 })
-export class SelectDropdownComponent implements OnInit {
+export class SelectDropdownComponent implements OnInit, OnChanges {
 
   constructor() { }
 
@@ -26,4 +26,11 @@ export class SelectDropdownComponent implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.dropDownData && changes.dropDownData.currentValue!=null && changes.dropDownData.currentValue.length == 0){
+      this.selectForm = new FormGroup({
+        data: new FormControl('')
+      });
+    }
+  }
 }
