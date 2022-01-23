@@ -1,1 +1,30 @@
 <button (click)="getYears()"> Select vehicle </button>
+<app-select-dropdown
+    [dropDownData]="years$ | async"
+    [actionType]="'Year'"
+    (selectedItemEvent)="getMakes($event)">
+</app-select-dropdown>
+<app-select-dropdown
+    [dropDownData]="makes$ | async"
+    [actionType]="'Make'"
+    (selectedItemEvent)="getModels($event)">
+</app-select-dropdown>
+<app-select-dropdown
+    [dropDownData]="models$ | async"
+    [actionType]="'Model'"
+    (selectedItemEvent)="getTrims($event)">
+</app-select-dropdown>
+
+<app-select-dropdown
+    [dropDownData]="trims$ | async"
+    [actionType]="'Style'"
+    (selectedItemEvent)="getData($event)">
+</app-select-dropdown>
+
+
+
+
+<div>
+    Vehicle: 
+</div>
+

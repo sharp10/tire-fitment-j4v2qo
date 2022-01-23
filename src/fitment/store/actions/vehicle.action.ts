@@ -1,23 +1,20 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 // import model/interface from db.json here...
 
 // Action constants
-export const LOAD_YEARS = '[Fitment] Load Years';
-export const LOAD_YEARS_FAIL = '[Fitment] Load Years Fail';
-export const LOAD_YEARS_SUCCESS = '[Fitment] Load Years Success';
+export const loadYears = createAction('[Fitment] Load Years');
+export const loadYearsSuccess = createAction('[Fitment] Load Years Success', props<{ years: any }>());
+export const loadYearsError = createAction('[Fitment] Load Years Fail', props<{ errorMsg: string; }>());
 
-// Action creators
-export class LoadYears implements Action {
-  readonly type = LOAD_YEARS;
-}
-export class LoadYearsFail implements Action {
-  readonly type = LOAD_YEARS_FAIL;
-  constructor(public payload: any){};
-}
-export class LoadYearsSuccess implements Action{
-  readonly type = LOAD_YEARS_SUCCESS;
-  constructor(public payload: any){};  // Replace 'any' with interface
-}
+export const loadMakes = createAction('[Fitment] Load Makes', props<{ year: string; }>());
+export const loadMakesSuccess = createAction('[Fitment] Load Makes Success', props<{ makes: any }>());
+export const loadMakesError = createAction('[Fitment] Load Makes Fail', props<{ errorMsg: string; }>());
 
-// Action types
-export type VehicleAction = LoadYears | LoadYearsFail | LoadYearsSuccess;
+
+export const loadModels = createAction('[Fitment] Load Models', props<{ year: string, make: string; }>());
+export const loadModelsSuccess = createAction('[Fitment] Load Models Success', props<{ models: any }>());
+export const loadModelsError = createAction('[Fitment] Load Models Fail', props<{ errorMsg: string; }>());
+
+export const loadTrims = createAction('[Fitment] Load Trims', props<{ year: string, make: string, model: string; }>());
+export const loadTrimsSuccess = createAction('[Fitment] Load Trims Success', props<{ trims: any }>());
+export const loadTrimsError = createAction('[Fitment] Load Trims Fail', props<{ errorMsg: string; }>());

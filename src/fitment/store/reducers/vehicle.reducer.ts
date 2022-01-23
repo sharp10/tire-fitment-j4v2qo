@@ -4,49 +4,132 @@
 // Create initial state
 // Create reducer function and pass in initial state and actions. 
 // Return new state
+import { Action, createReducer, on } from '@ngrx/store';
+import { VehicleAction } from '../actions';
 
-import * as fromVehicle from '../actions/vehicle.action';
-
-export interface VehicleState {
-  years: string[],
-  loaded: boolean,
-  loading: boolean
+export interface State {
+  years: any,
+  makes: any,
+  models: any,
+  trims: any,
+  year: string,
+  make: string,
+  model: string,
+  trim: string,
+  error: string;
 }
 
-export const initialState: VehicleState = {
+export const vehiclesFeatureKey = 'vehicle';
+
+export const initialState: State = {
   years: [],
-  loaded: false,
-  loading: false
+  makes: [],
+  models: [],
+  trims: [],
+  year: '',
+  make: '',
+  model: '',
+  trim: '',
+  error: ''
 }
 
-export function reducer(
-  state = initialState,
-  action: fromVehicle.VehicleAction
-): VehicleState {
+export const vehicleReducer = createReducer(
+  initialState,
+  on(VehicleAction.loadYears, (state) => {
+    return {
+      ...state,
+      error: ''
+    };
+  }),
+  on(VehicleAction.loadYearsSuccess, (state, { years }) => {
+    return {
+      ...state,
+      error: '',
+      years,
+    };
+  }),
+  on(VehicleAction.loadYearsError, (state, { errorMsg }) => {
+    return {
+      ...state,
+      error: errorMsg
+    };
+  }),
+  on(VehicleAction.loadMakes, (state, { year }) => {
+    return {
+      ...state,
+      error: '',
+      year
+    };
+  }),
+  on(VehicleAction.loadMakesSuccess, (state, { makes }) => {
+    return {
+      ...state,
+      error: '',
+      makes,
+      region: state.year,
+    };
+  }),
+  on(VehicleAction.loadMakesError, (state, { errorMsg }) => {
+    return {
+      ...state,
+      error: errorMsg
+    };
+  }),
+  on(VehicleAction.loadModels, (state, { year, make }) => {
+    return {
+      ...state,
+      error: '',
+      year,
+      make
+    };
+  }),
+  on(VehicleAction.loadModelsSuccess, (state, { models }) => {
+    return {
+      ...state,
+      error: '',
+      models,
+      year: state.year,
+      make: state.make,
+    };
+  }),
+  on(VehicleAction.loadModelsError, (state, { errorMsg }) => {
+    return {
+      ...state,
+      error: errorMsg
+    };
+  }),
+  on(VehicleAction.loadTrims, (state, { year, make }) => {
+    return {
+      ...state,
+      error: '',
+      year,
+      make
+    };
+  }),
+  on(VehicleAction.loadTrimsSuccess, (state, { trims }) => {
+    console.log("loadTrimsSuccess-->", trims);
+    return {
+      ...state,
+      error: '',
+      trims,
+      year: state.year,
+      make: state.make,
+      model: state.model,
+    };
+  }),
+  on(VehicleAction.loadTrimsError, (state, { errorMsg }) => {
+    return {
+      ...state,
+      error: errorMsg
+    };
+  }),
+);
+export const getError = (state: State) => state.error;
+export const loadYears = (state: State) => state.years;
+export const loadMakes = (state: State) => state.makes;
+export const loadModels = (state: State) => state.models;
+export const loadTrims = (state: State) => state.trims;
 
-  switch(action.type){
-
-    case fromVehicle.LOAD_YEARS: {
-      return {
-        ...state,
-        loading: true
-      }
-    }
-    case fromVehicle.LOAD_YEARS_FAIL: {
-      return {
-        ...state,
-        loaded: false,
-        loading: false
-      }
-    }
-    case fromVehicle.LOAD_YEARS_SUCCESS: {
-      return {
-        ...state,
-        loaded: true,
-        loading: false
-      }
-    }
-  }
-
-  return state;
-}
+export const getSelectedYear = (state: State) => state.year;
+export const getSelectedMake = (state: State) => state.make;
+export const getSelectedModel = (state: State) => state.model;

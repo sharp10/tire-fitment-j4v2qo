@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './store'
-
 import { FitmentContainerComponent } from './fitment-container/fitment-container.component';
+import { SelectDropdownComponent } from './select-dropdown/select-dropdown.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature('fitment', reducers),
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  declarations: [FitmentContainerComponent],
-  exports: [FitmentContainerComponent]
+  declarations: [
+    FitmentContainerComponent,
+    SelectDropdownComponent
+  ],
+  exports: [
+    FitmentContainerComponent
+  ]
 })
 export class FitmentModule { }
